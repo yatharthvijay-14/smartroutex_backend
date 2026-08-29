@@ -23,9 +23,9 @@ public class PotholeService {
 
     @PostConstruct
     public void seedInitialPotholesIfEmpty() {
-        String realImg1 = "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&auto=format&fit=crop";
-        String realImg2 = "https://images.unsplash.com/photo-1617886322207-6f504e7472c5?w=800&auto=format&fit=crop";
-        String realImg3 = "https://images.unsplash.com/photo-1508873696983-2df515122519?w=800&auto=format&fit=crop";
+        String realImg1 = "/potholes/pothole1.png";
+        String realImg2 = "/potholes/pothole2.png";
+        String realImg3 = "/potholes/pothole3.png";
 
         if (repository.count() == 0) {
             repository.save(new Pothole("Direct City Corridor (Pothole Zone A)", 25.1750, 75.8410, "HIGH", "15 cm", "10 mins ago", realImg1, "system"));
@@ -34,12 +34,15 @@ public class PotholeService {
             repository.save(new Pothole("Vigyan Nagar Flyover", 25.1810, 75.8390, "HIGH", "14 cm", "2 hours ago", realImg1, "system"));
             repository.save(new Pothole("Nayapura Heritage Road", 25.1820, 75.8400, "LOW", "5 cm", "4 hours ago", realImg2, "system"));
         } else {
-            // Auto-clean legacy non-pothole URLs (e.g. mask images) from database
+            // Auto-clean legacy mask/unsplash URLs from database
             List<Pothole> existing = repository.findAll();
+            int idx = 0;
+            String[] fallbacks = {realImg1, realImg2, realImg3};
             for (Pothole p : existing) {
-                if (p.getImageUrl() != null && (p.getImageUrl().contains("1515162816999") || p.getImageUrl().contains("1584467735815"))) {
-                    p.setImageUrl(realImg1);
+                if (p.getImageUrl() != null && (p.getImageUrl().contains("unsplash") || p.getImageUrl().contains("1515162816999") || p.getImageUrl().contains("1584467735815"))) {
+                    p.setImageUrl(fallbacks[idx % fallbacks.length]);
                     repository.save(p);
+                    idx++;
                 }
             }
         }
