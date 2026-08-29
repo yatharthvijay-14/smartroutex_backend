@@ -95,7 +95,7 @@ PORT=8080
 
 ```bash
 # Clone the repository
-git clone https://github.com/<your-username>/smartroutex-backend.git
+git clone https://github.com/<yatharthvijay-14/smartroutex-backend.git
 cd smartroutex-backend
 
 # Configure environment variables
