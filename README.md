@@ -3,7 +3,7 @@
 [![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1.0-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![Database](https://img.shields.io/badge/Database-MySQL%20%2F%20H2-blue.svg)](https://www.mysql.com/)
-[![License](https://img.shields.io/badge/License-MIT-purple.svg)](#)
+[![License](https://img.shields.io/badge/License-MIT-purple.svg)](#-license)
 
 SmartRouteX Backend is a high-performance RESTful microservice built with **Java 21** and **Spring Boot 4.1.0**. It powers real-time road risk assessments, hazard reporting with AI-verifications, user authentication, and automated email alerts to infrastructure authorities.
 
@@ -27,18 +27,19 @@ SmartRouteX Backend is a high-performance RESTful microservice built with **Java
 | :--- | :--- |
 | **Language** | Java 21 (JDK 21) |
 | **Framework** | Spring Boot 4.1.0 |
-| **Web & Security** | Spring Web, Spring Security, JWT (io.jsonwebtoken) |
+| **Web & Security** | Spring Web, Spring Security, JWT (`io.jsonwebtoken`) |
 | **Data & Persistence** | Spring Data JPA, Hibernate 7, Jakarta Persistence |
 | **Databases** | MySQL 8.0 / H2 In-Memory DB |
 | **Connection Pool** | HikariCP |
 | **Build Tool** | Apache Maven 3.9+ |
-| **Containerization** | Docker, eclipse-temurin:21 JRE |
+| **Containerization** | Docker, `eclipse-temurin:21` JRE |
 
 ---
 
 ## 📌 REST API Endpoints
 
 ### 🔑 Authentication (`/api/auth`)
+
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
 | `POST` | `/api/auth/register` | Register a new user account |
@@ -47,6 +48,7 @@ SmartRouteX Backend is a high-performance RESTful microservice built with **Java
 | `POST` | `/api/auth/google-register` | Register new account using Google profile |
 
 ### 🕳️ Potholes & Hazards (`/potholes`)
+
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
 | `GET` | `/potholes` | Fetch all reported potholes (optional `?username=`) |
@@ -58,6 +60,7 @@ SmartRouteX Backend is a high-performance RESTful microservice built with **Java
 | `DELETE` | `/potholes/{id}` | Delete a pothole report |
 
 ### 🛣️ Corridor & Road Status (`/roads`)
+
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
 | `GET` | `/roads` | Fetch all road corridors |
@@ -68,8 +71,6 @@ SmartRouteX Backend is a high-performance RESTful microservice built with **Java
 ---
 
 ## ⚙️ Environment Variables
-
-Copy `.env.example` to `.env` in the root directory:
 
 ```env
 # Database Credentials
@@ -90,34 +91,25 @@ PORT=8080
 
 ---
 
-## 💻 Local Setup & Execution
+## 🏁 Getting Started
 
-### Prerequisites:
-- Java 21 JDK installed
-- Maven installed (`./mvnw` wrapper included)
+```bash
+# Clone the repository
+git clone https://github.com/<your-username>/smartroutex-backend.git
+cd smartroutex-backend
 
-### Steps:
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yatharthvijay-14/smartroutex_backend.git
-   cd smartroutex_backend
-   ```
-2. Build the project:
-   ```bash
-   ./mvnw clean package -DskipTests
-   ```
-3. Run the Spring Boot application:
-   ```bash
-   ./mvnw spring-boot:run
-   ```
-4. Access backend REST service at `http://localhost:8080`.
+# Configure environment variables
+cp .env.example .env
+
+# Build and run
+mvn clean install
+mvn spring-boot:run
+```
+
+The API will be available at `http://localhost:8080`.
 
 ---
 
-## 🐳 Docker Deployment
+## 📄 License
 
-To build and run using Docker:
-```bash
-docker build -t smartroutex-backend .
-docker run -p 8080:8080 smartroutex-backend
-```
+This project is licensed under the **MIT License**.
