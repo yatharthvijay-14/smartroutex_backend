@@ -10,4 +10,5 @@ import java.util.List;
 public interface PotholeRepository extends JpaRepository<Pothole, Long> {
 
     List<Pothole> findBySeverity(String severity);
+    List<Pothole> findByReportedBy(String reportedBy);
 }

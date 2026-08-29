@@ -18,8 +18,16 @@ public class PotholeController {
     private PotholeService potholeService;
 
     @GetMapping
-    public List<Pothole> getAllPotholes() {
+    public List<Pothole> getAllPotholes(@RequestParam(required = false) String username) {
+        if (username != null && !username.trim().isEmpty()) {
+            return potholeService.getPotholesByReportedBy(username);
+        }
         return potholeService.getAllPotholes();
+    }
+
+    @GetMapping("/user/{username}")
+    public List<Pothole> getPotholesByUser(@PathVariable String username) {
+        return potholeService.getPotholesByReportedBy(username);
     }
 
     @GetMapping("/severity/high")

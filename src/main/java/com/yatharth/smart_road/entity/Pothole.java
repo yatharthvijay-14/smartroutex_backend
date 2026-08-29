@@ -21,6 +21,8 @@ public class Pothole {
 
     private String reportedAt;
 
+    private String reportedBy;
+
     @Column(columnDefinition = "LONGTEXT")
     private String imageUrl;
 
@@ -39,6 +41,11 @@ public class Pothole {
         this.reportedAt = reportedAt;
         this.imageUrl = imageUrl;
         this.status = "ACTIVE";
+    }
+
+    public Pothole(String roadName, Double latitude, Double longitude, String severity, String depth, String reportedAt, String imageUrl, String reportedBy) {
+        this(roadName, latitude, longitude, severity, depth, reportedAt, imageUrl);
+        this.reportedBy = reportedBy;
     }
 
     public Long getId() { return id; }
@@ -61,6 +68,9 @@ public class Pothole {
 
     public String getReportedAt() { return reportedAt; }
     public void setReportedAt(String reportedAt) { this.reportedAt = reportedAt; }
+
+    public String getReportedBy() { return reportedBy; }
+    public void setReportedBy(String reportedBy) { this.reportedBy = reportedBy; }
 
     public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
